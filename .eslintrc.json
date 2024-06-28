@@ -1,13 +1,15 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "jest": true
   },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -19,11 +21,15 @@
   "plugins": [
     "react",
     "react-hooks",
-    "jsx-a11y"
+    "jsx-a11y",
+    "prettier"
   ],
   "rules": {
     "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": ["error", {
+      "endOfLine": "auto"
+    }]
   },
   "settings": {
     "react": {
