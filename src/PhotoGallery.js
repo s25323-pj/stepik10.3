@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Photo from './Photo';
 import photos from './data';
+import PropTypes from 'prop-types';
 
 const PhotoGallery = () => {
   const { id } = useParams();
@@ -24,9 +25,9 @@ const PhotoGallery = () => {
     }
   }, [id, photoData, navigate]);
 
-  const handleRate = (id, newRating) => {
+  const handleRate = (photoId, newRating) => {
     const updatedPhotos = photoData.map(photo =>
-      photo.id === id ? { ...photo, rating: newRating } : photo
+      photo.id === photoId ? { ...photo, rating: newRating } : photo
     );
     setPhotoData(updatedPhotos);
   };
@@ -51,13 +52,23 @@ const PhotoGallery = () => {
     <div>
       <Photo photo={photoData[currentPhotoIndex]} onRate={handleRate} />
       <div>
-        {currentPhotoIndex > 0 && <button onClick={handlePrev}>{'<'}</button>}
+        {currentPhotoIndex > 0 && (
+          <button type="button" onClick={handlePrev}>
+            {'<'}
+          </button>
+        )}
         {currentPhotoIndex < photoData.length - 1 && (
-          <button onClick={handleNext}>{'>'}</button>
+          <button type="button" onClick={handleNext}>
+            {'>'}
+          </button>
         )}
       </div>
     </div>
   );
+};
+
+PhotoGallery.propTypes = {
+  id: PropTypes.string,
 };
 
 export default PhotoGallery;
